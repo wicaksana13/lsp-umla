@@ -18,6 +18,11 @@ class AssessmentController extends Controller
         ->latest()
         ->paginate(15);
 
+        // Jika asesor/staff, arahkan ke view assesment khusus asesor
+        if (auth()->user()->role === 'staff') {
+            return view('assesor.assesment', compact('data'));
+        }
+
         return view('superadmin.assessment.index', compact('data'));
     }
 
@@ -36,7 +41,7 @@ class AssessmentController extends Controller
     public function approve(AssessmentRegistration $assessment)
     {
         $assessment->update([
-            'status'      => 'approved', // Status diubah menjadi approved
+            'status'      => 'approved',
             'approved_by' => auth()->id(),
             'approved_at' => now()
         ]);
@@ -55,31 +60,37 @@ class AssessmentController extends Controller
 
         return back();
     }
-public function result(AssessmentRegistration $assessment)
-{
-    $assessment->load([
-        'participant',
-        'schedule.scheme',
-        'schedule.tuk',
-        'units'
-    ]);
 
-    // Ubah view-nya ke halaman result, dan kirim variabel dengan nama 'assessment'
-    return view('superadmin.assessment.result', compact('assessment')); 
-}
-public function revise(Request $request, AssessmentRegistration $assessment)
-{
-    $request->validate([
-        'note' => 'required|string|max:1000'
-    ]);
+    public function result(AssessmentRegistration $assessment)
+    {
+        $assessment->load([
+            'participant',
+            'schedule.scheme',
+            'schedule.tuk',
+            'units'
+        ]);
 
-    $assessment->update([
-        'status' => 'revisi',
-        'note'   => $request->note
-    ]);
+        // Jika asesor/staff, arahkan ke view result khusus asesor
+        if (auth()->user()->role === 'staff') {
+            return view('assesor.result', compact('assessment'));
+        }
 
-    return redirect()
-        ->route('superadmin.assessment.index')
-        ->with('success', 'Catatan revisi berhasil dikirim ke peserta.');
-}
+        return view('superadmin.assessment.result', compact('assessment')); 
+    }
+
+    public function revise(Request $request, AssessmentRegistration $assessment)
+    {
+        $request->validate([
+            'note' => 'required|string|max:1000'
+        ]);
+
+        $assessment->update([
+            'status' => 'revisi',
+            'note'   => $request->note
+        ]);
+
+        return redirect()
+            ->route('superadmin.assessment.index')
+            ->with('success', 'Catatan revisi berhasil dikirim ke peserta.');
+    }
 }

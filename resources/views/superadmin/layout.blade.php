@@ -34,7 +34,7 @@
                 <a href="{{ route('superadmin.pendaftaran.index') }}" class="{{ request()->routeIs('superadmin.pendaftaran.*')?'active':'' }}">✓ <span>Approval Pendaftaran</span></a>
             @endif
 
-            {{-- Bisa diakses oleh Super Admin & Asesor --}}
+            {{-- Dapat diakses Super Admin & Asesor --}}
             <a href="{{ route('superadmin.assessment.index') }}" class="{{ request()->routeIs('superadmin.assessment.*')?'active':'' }}">✓ <span>Approval & Nilai Asesmen</span></a>
 
             @if(auth()->user()->role === 'super_admin')

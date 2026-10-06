@@ -459,7 +459,7 @@ style="margin-top:15px;border-radius:15px"
 
 <label>
 
-Gambar Daftar Sertifikat
+Gambar Struktur Profil
 
 
 <input 

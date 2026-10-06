@@ -21,7 +21,11 @@ class CertificationScheme extends Model
     ];
 
 
-
+    // TAMBAHKAN RELASI INI
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class, 'certification_scheme_id');
+    }
     protected $casts = [
 
         'is_active'=>'boolean'
