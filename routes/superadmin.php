@@ -322,10 +322,12 @@ AssessmentUnitController::class,
 )
 ->name('assessment.unit.create');
 
-
-
-
-
+Route::get('assessment/{assessment}', [AssessmentController::class, 'show'])
+    ->name('assessment.show');
+Route::patch(
+    'assessment/{assessment}/revise',
+    [AssessmentController::class, 'revise']
+)->name('assessment.revise');
 Route::post(
 'assessment/{assessment}/unit',
 [

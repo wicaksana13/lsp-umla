@@ -13,6 +13,10 @@ protected $fillable=[
 
     'schedule_id',
 
+    'program_studi',
+    'ktp_scan',
+    'diploma_scan',
+    'payment_proof',
     'status',
 
     'approved_by',

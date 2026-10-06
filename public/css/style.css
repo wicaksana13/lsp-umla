@@ -1108,46 +1108,86 @@ select {
     margin: -100px auto 50px;
     padding: 25px;
 }
-
+/* =========================
+   FILTER AREA (DESKTOP)
+========================= */
 .filter-box {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-bottom: 1px solid #ddd;
+    gap: 20px; /* Jarak antar kolom input */
+    margin-top: 10px;
 }
 
 .filter-item {
     min-width: 0;
-    height: 50px;
-    padding: 0 20px;
-    border-right: 1px solid #eee;
-    color: #999;
+    width: 100%;
+}
+
+/* Styling Input & Select agar lebih modern */
+.filter-item select,
+.filter-item input[type="date"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1px solid #dbe2ea;
+    background: #f8fafc;
+    font-size: 14px;
+    color: #334155;
+    outline: none;
+    transition: .3s ease;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.filter-item select:focus,
+.filter-item input[type="date"]:focus {
+    border-color: var(--primary);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(8, 12, 130, 0.1);
+}
+
+/* Styling Group Tombol */
+.filter-button {
+    margin-top: 25px;
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.filter-item:last-child {
-    border-right: 0;
-}
-
-.filter-button {
-    margin-top: 20px;
-}
-
 .filter-button button {
-    padding: 8px 25px;
+    padding: 12px 35px;
     border: 0;
-    border-radius: 20px;
+    border-radius: 12px;
     background: var(--primary);
     color: var(--white);
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    transition: .3s ease;
+}
+
+.filter-button button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(8, 12, 130, 0.15);
 }
 
 .filter-button .reset {
-    margin-left: 10px;
-    background: #eee;
-    color: var(--primary);
+    margin-left: 0; /* Menimpa margin-left bawaan lama */
+    padding: 12px 25px;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .3s ease;
+}
+
+.filter-button .reset:hover {
+    background: #e2e8f0;
+    color: #1e293b;
 }
 
 .jadwal-list {
@@ -1260,29 +1300,24 @@ select {
     font-size: 18px;
     text-align: center;
 }
-
+/* GANTI KODE .struktur LAMA DENGAN INI */
 .struktur {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1000px; /* Diperkecil dari 1200px */
     margin: 40px auto;
-
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* Diubah dari 3 menjadi 4 kolom agar kotak lebih ramping */
+    gap: 20px; /* Jarak antar kotak diperkecil dari 30px */
 }
 
+/* GANTI KODE .person LAMA DENGAN INI */
 .person {
     min-width: 0;
-    padding: 22px;
-
+    padding: 15px; /* Padding diperkecil dari 22px */
     background: var(--white);
-
-    border-radius: 24px;
-
+    border-radius: 16px; /* Lengkungan diperkecil dari 24px */
     box-shadow: 0 10px 25px rgba(0,0,0,.10);
-
     text-align: center;
-
     transition: transform .25s ease, box-shadow .25s ease;
 }
 
@@ -1291,14 +1326,12 @@ select {
     box-shadow: 0 15px 35px rgba(0,0,0,.14);
 }
 
+/* GANTI KODE .photo LAMA DENGAN INI */
 .photo {
     width: 100%;
-    height: 240px;
-
+    height: 150px; /* Tinggi foto dikurangi drastis dari 240px */
     background: #eee;
-
-    border-radius: 20px;
-
+    border-radius: 12px; /* Lengkungan foto disesuaikan */
     overflow: hidden;
 }
 
@@ -1306,21 +1339,22 @@ select {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center; /* Memastikan wajah tetap terlihat meski dipotong */
 }
 
+/* GANTI KODE TEKS NAMA & JABATAN LAMA DENGAN INI */
 .person h3 {
-    margin-top: 18px;
-    font-size: 18px;
-    line-height: 1.4;
+    margin-top: 12px; /* Jarak atas diperkecil */
+    font-size: 15px; /* Font diperkecil dari 18px */
+    line-height: 1.3;
     color: var(--heading);
 }
 
 .person p {
-    margin-top: 5px;
-    font-size: 15px;
+    margin-top: 4px;
+    font-size: 13px; /* Font diperkecil dari 15px */
     color: #555;
 }
-
 /* =========================================================
    SKEMA PAGE
 ========================================================= */
@@ -2026,8 +2060,7 @@ select {
 
     /* INFORMASI */
     .informasi-page,
-    .prosedur-page,
-    .informasi-detail {
+    .prosedur-page {
         width: calc(100% - 32px);
         margin-left: auto;
         margin-right: auto;
@@ -2087,21 +2120,15 @@ select {
     .asesor-content h1 {
         font-size: 20px;
     }
-
-    /* JADWAL */
-    .filter-box {
+.filter-box {
         grid-template-columns: 1fr;
+        gap: 15px; /* Memberi jarak antar input di HP */
     }
 
     .filter-item {
         border-right: 0;
-        border-bottom: 1px solid #eee;
+        border-bottom: 0; /* Pastikan border bawah yang kaku sebelumnya dihapus */
     }
-
-    .filter-item:last-child {
-        border-bottom: 0;
-    }
-
     .jadwal-list {
         width: 92%;
     }
@@ -2846,7 +2873,6 @@ background:#26358c;
 .registration-page{
 
     min-height:70vh;
-
     padding:70px 20px;
 
     background:#f8fafc;
@@ -2861,7 +2887,7 @@ background:#26358c;
     max-width:850px;
 
     margin:auto;
-
+    
     background:white;
 
     padding:45px;
@@ -3133,7 +3159,7 @@ background:#26358c;
 
 
     .registration-card{
-
+        margin-top: 1px;
         padding:25px;
 
     }
@@ -3782,4 +3808,70 @@ background:#26358c;
 
 
 
+}
+/* =====================================
+   RESPONSIVE INFORMASI DETAIL (MOBILE)
+===================================== */
+@media (max-width: 768px) {
+    .informasi-detail {
+        padding: 25px; /* Kurangi padding desktop yang 50px */
+        margin: 30px auto 80px; 
+        border-radius: 20px;
+    }
+
+    .detail-header h1 {
+        font-size: 24px; /* Perkecil judul dari 36px */
+        margin-bottom: 10px;
+    }
+
+    .detail-date {
+        font-size: 13px;
+    }
+
+    .detail-image {
+        margin: 20px 0;
+    }
+
+    .detail-image img {
+        height: 250px; /* Kurangi tinggi gambar dari 450px */
+        border-radius: 14px;
+    }
+
+    .detail-content {
+        font-size: 15px; /* Perkecil teks bacaan dari 17px */
+        line-height: 1.7;
+    }
+
+    .back-button {
+        margin-top: 25px;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+}
+
+/* =====================================
+   RESPONSIVE INFORMASI DETAIL (SMALL MOBILE)
+===================================== */
+@media (max-width: 480px) {
+    .informasi-detail {
+        padding: 20px 15px; /* Padding lebih tipis untuk layar kecil */
+    }
+
+    .detail-header h1 {
+        font-size: 21px; /* Judul lebih kecil lagi */
+    }
+
+    .detail-image img {
+        height: 200px; /* Gambar lebih proporsional untuk HP kecil */
+    }
+
+    .detail-content {
+        font-size: 14px;
+    }
+    
+    .back-button {
+        width: 100%; /* Tombol kembali memenuhi lebar layar di HP */
+        text-align: center;
+    }
 }

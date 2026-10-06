@@ -9,7 +9,8 @@ Route::middleware(['auth','participant'])
 ->name('peserta.')
 ->group(function(){
 
-
+Route::get('/assessment/{id}/edit', [ParticipantDashboardController::class, 'assessmentEdit'])->name('assessment.edit');
+Route::put('/assessment/{id}/update', [ParticipantDashboardController::class, 'assessmentUpdate'])->name('assessment.update');
     // Dashboard
     Route::get('/dashboard',
     [ParticipantDashboardController::class,'index'])
@@ -24,10 +25,17 @@ Route::middleware(['auth','participant'])
 
 
 
-    // Daftar asesmen
+    // Form Pendaftaran Asesmen (GET)
+    Route::get('/assessment/register/{id}',
+    [ParticipantDashboardController::class,'registerForm'])
+    ->name('register.form');
+
+
+
+    // Proses Simpan Pendaftaran Asesmen (POST)
     Route::post('/assessment/register/{id}',
-    [ParticipantDashboardController::class,'register'])
-    ->name('register');
+    [ParticipantDashboardController::class,'registerStore'])
+    ->name('register.store');
 
 
 

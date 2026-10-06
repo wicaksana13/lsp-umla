@@ -4,7 +4,7 @@
 <div class="footer-brand">
 
 
-<img src="{{asset('assets/logo.png')}}">
+<img src="{{ asset('assets/Logo LSP.png') }}">
 
 
 

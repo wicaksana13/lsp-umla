@@ -224,50 +224,16 @@ Terbuka
 
 <td class="actions">
 
-
-
-
-
-@if(in_array($item->id,$sudahDaftar))
-
-
-<span class="badge muted">
-
-Sudah Daftar
-
-</span>
-
-
-
-@else
-
-
-
-<form method="POST"
-action="{{ route('peserta.register',$item->id) }}">
-
-
-@csrf
-
-
-
-<button class="btn btn-primary">
-
-Daftar
-
-</button>
-
-
-</form>
-
-
-
-@endif
-
-
-
-
-
+    @if(in_array($item->id, $sudahDaftar))
+        <span class="badge muted">
+            Sudah Daftar
+        </span>
+    @else
+        <!-- Gunakan satu form GET yang bersih -->
+        <form method="GET" action="{{ route('peserta.register.form', $item->id) }}">
+            <button class="btn btn-primary">Daftar</button>
+        </form>
+    @endif
 
 </td>
 

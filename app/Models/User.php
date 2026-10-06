@@ -43,19 +43,13 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-
             'email_verified_at' => 'datetime',
-
-            'password' => 'hashed',
-
+            
+            // Baris 'password' => 'hashed' sudah dihapus di sini
+            
             'is_active' => 'boolean',
-
         ];
     }
-
-
-
-
 
 
     /**
@@ -117,6 +111,7 @@ class User extends Authenticatable
     {
         return $this->role === 'participant';
     }
+
     public function certificates()
     {
         return $this->hasMany(
@@ -134,11 +129,12 @@ class User extends Authenticatable
             'participant_id'
         );
     }
+
     public function assessmentAsParticipant()
-{
-    return $this->hasMany(
-        AssessmentRegistration::class,
-        'participant_id'
-    );
-}
+    {
+        return $this->hasMany(
+            AssessmentRegistration::class,
+            'participant_id'
+        );
+    }
 }

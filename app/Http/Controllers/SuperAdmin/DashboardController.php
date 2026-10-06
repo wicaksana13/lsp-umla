@@ -20,7 +20,9 @@ class DashboardController extends Controller
             'announcements' => Announcement::where('is_published', true)->count(),
         ];
 
-        $pendingRegistrations = ParticipantRegistration::with('scheme')->where('status', 'pending')->latest()->take(6)->get();
+        // Hapus ->with('scheme') karena relasinya sudah tidak ada
+        $pendingRegistrations = ParticipantRegistration::where('status', 'pending')->latest()->take(6)->get();
+        
         $upcomingSchedules = CertificationSchedule::with(['scheme', 'tuk'])->whereDate('date', '>=', now()->toDateString())->orderBy('date')->take(5)->get();
 
         return view('superadmin.dashboard', compact('stats', 'pendingRegistrations', 'upcomingSchedules'));
